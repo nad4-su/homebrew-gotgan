@@ -18,10 +18,13 @@ cask "gotgan" do
   # 표가 붙어 있으면 macOS 가 Gatekeeper 를 거치고, 곳간은 공증을 받지 않았으므로 막힌다.
   # 예전에는 받는 사람이 --no-quarantine 으로 스스로 고를 수 있었으나 Homebrew 6 에서
   # 그 옵션이 없어졌다. 그래서 여기서 대신 떼되, caveats 에 그렇게 했다고 밝힌다.
-  # 서명 자체는 Homebrew 가 그대로 검사하며, 이 단계는 그것을 건드리지 않는다.
+  # 서명과 내려받은 파일의 체크섬은 Homebrew 가 그대로 검사하며 이 단계는 건드리지 않는다.
   postflight_steps do
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/Gotgan.app"]
+    run "/usr/bin/xattr",
+        args:           ["-dr", "com.apple.quarantine", "Gotgan.app"],
+        chdir:          ".",
+        writable_paths: ["Gotgan.app"],
+        writable_base:  :appdir
   end
 
   uninstall quit:      "ai.promedius.gotgan",

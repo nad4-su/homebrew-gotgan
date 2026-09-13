@@ -2,15 +2,14 @@ cask "gotgan" do
   version "0.1.2"
   sha256 "53d55599840bc0c0332d444de4195651ad60cfadf8b1b872cc9e0e8322ad70aa"
 
-  url "https://github.com/nad4-su/gotgan/releases/download/v#{version}/Gotgan-#{version}.dmg",
-      verified: "github.com/nad4-su/gotgan/"
+  url "https://github.com/nad4-su/gotgan/releases/download/v#{version}/Gotgan-#{version}.dmg"
   name "GotGan"
   name "곳간"
   desc "Menu bar app showing remaining Claude and Codex usage"
   homepage "https://github.com/nad4-su/gotgan"
 
   # 위젯은 macOS 14 이상이 필요하지만 본체는 13 에서도 돈다.
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "Gotgan.app"
 

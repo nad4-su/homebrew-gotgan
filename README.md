@@ -13,27 +13,20 @@ brew install --cask gotgan
 처음 붙일 때 Homebrew 가 외부 tap 을 믿을지 한 번 묻습니다. `brew trust nad4-su/gotgan` 으로
 허락하시면 됩니다.
 
-## 처음 열 때 경고가 뜹니다
+## 경고 없이 열립니다
 
 곳간은 애플 **공증**을 받지 않았습니다. 공증은 앱을 애플에 보내 악성코드 검사를 받고 확인증을
 발급받는 절차인데, 연 $99 짜리 Developer Program 에 들어야 합니다. 서명 자체는 성합니다 —
 애플이 "누가 만들었는지 확인해 주지 않았다"는 뜻일 뿐입니다.
 
-Homebrew 는 내려받은 것에 `com.apple.quarantine` 표를 붙입니다. 그 표가 있으면 macOS 가
-Gatekeeper 를 거치고, 공증이 없으니 경고가 뜹니다. (예전에는 `--no-quarantine` 으로 건너뛸 수
-있었지만 Homebrew 6 에서 그 옵션이 없어졌습니다.)
+이 cask 는 **설치를 마친 뒤 `com.apple.quarantine` 표를 떼어냅니다.** 그 표가 있어야 macOS 가
+Gatekeeper 를 거치므로, 표가 없으면 경고가 뜨지 않습니다. 공증을 받은 척하는 것이 아니라
+Gatekeeper 를 거치지 않게 한 것이고, 설치할 때 화면에 그 사실을 적어 보여 줍니다.
 
-한 줄이면 풀립니다.
+서명과 내려받은 파일의 체크섬은 Homebrew 가 그대로 검사합니다.
 
-```bash
-xattr -dr com.apple.quarantine /Applications/Gotgan.app
-```
-
-또는 경고 창에서 **완료**를 누른 뒤 **시스템 설정 → 개인정보 보호 및 보안** 을 열면
-`Mac을 보호하기 위해 'Gotgan.app'을(를) 차단했습니다` 줄이 있습니다. 옆의 **그래도 열기**.
-
-경고를 아예 만나고 싶지 않으시면 [설치 스크립트](https://github.com/nad4-su/gotgan#설치)를
-쓰십시오. curl 은 격리 표를 붙이지 않습니다.
+직접 판단하고 싶으시면 tap 대신 [브라우저로 dmg 를 받아](https://github.com/nad4-su/gotgan#설치)
+시스템 설정 → 개인정보 보호 및 보안 에서 허락하십시오.
 
 ## 쓰기
 
